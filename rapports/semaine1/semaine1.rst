@@ -96,7 +96,7 @@ L'arduino UNO a été programmé avec le code suivant :
 	}
 	
 
-Nous obtenons la sortie de l'aruino UNO suivante :
+Nous obtenons la sortie de l'arduino UNO suivante :
 	
 .. figure:: ressources/screen1.png
 	:alt: screen du test de bridge avec un arduino
@@ -113,11 +113,52 @@ La configuration du module wifi se fait via une émission de texte sur le port
 série. L'alimentation se fait en 3.3 V. Cela est facile à faire car l'arduino
 dispose d'un pin 3.3V. Il est possible d'envoyer des signaux à cette carte pour
 lui demander de s'éteindre (OFF), de se mettre en veille (SLEEP) ou de se rallumer
-(WAKEUP)
+(WAKEUP).
+Pour demander à la puce de lister l'ensemble des points d'accès wifi, on utilise
+la chaîne : "AT+CWLAP".
+
+
+
+Version avec 1 Arduino
+----------------------
+
+Sur cette page (http://zeflo.com/2014/esp8266-weather-display/), il est dit qu'il est possible de donner 
+un baud rate sur autre qu'un port série plus important. Avec cette hyppothèse, nous
+pouvons n'utiliser qu'un seul arduino pour communiquer avec la puce. 
+
+Nous obtenons le code suivant :
+
+.. code:: C
+
+	#include <SoftwareSerial.h>
+
+	// déclaration des pins de communication avec la puce
+	const int rxPin = 10;
+	const int txPin = 11;
+
+	SoftwareSerial puce = SoftwareSerial(rxPin,txPin);
+
+	void setup(){
+	  Serial.begin(9600);
+	  puce.begin(57600);
+	  puce.println("AT+RST"); // Reset de la puce
+	  puce.println("AT+CWLAP"); // Demande de scan des wifi
+	}
+
+	void loop(){
+	  if ( puce.available() ){
+		Serial.write(puce.read());
+	  }  
+	}
 
 
 ressources et liens utilisés
 ----------------------------
+
+Numéros sur les composants : carré : 
+	ESP8266
+	252014
+	POHV54
 
 Lors de cette semaine, nous avons utilisé les technologies suivantes :
 
@@ -129,3 +170,14 @@ Et les liens suivants :
  
  - Utilisation du module wifi avec arduino : http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module
  - Documentation du module wifi : https://nurdspace.nl/ESP8266
+ - exemple avec un capteur d'humidité en plus : http://zeflo.com/2014/esp8266-weather-display/
+ - Video youtube d'explications sur la marche à suivre pour demarrer avec la puce : https://www.youtube.com/watch?v=9QZkCQSHnko
+ 
+Liens qui peuvent être intéressants :
+ 
+ - https://www.youtube.com/watch?v=qU76yWHeQuw
+ - https://www.youtube.com/watch?v=uznq8W9sOKQ
+ - http://www.instructables.com/id/Using-the-ESP8266-module/
+ - http://hackaday.com/tag/esp8266/
+ - https://github.com/esp8266
+ - http://harizanov.com/2014/11/esp8266-powered-web-server-led-control-dht22-temperaturehumidity-sensor-reading/

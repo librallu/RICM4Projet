@@ -420,7 +420,7 @@ ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 </span>        <span class="name">Serial</span><span class="punctuation">.</span><span class="name">write</span><span class="punctuation">(</span><span class="name">bridge</span><span class="punctuation">.</span><span class="name">read</span><span class="punctuation">());</span> <span class="comment single">// On lit les données sur le bridge et on écrit sur le serial
 </span><span class="punctuation">}</span>
 </pre>
-<p>Nous obtenons la sortie de l'aruino UNO suivante :</p>
+<p>Nous obtenons la sortie de l'arduino UNO suivante :</p>
 <div class="figure">
 <img alt="screen du test de bridge avec un arduino" src="ressources/screen1.png" />
 <p class="caption">On remarque bien que les caractères 'a' et 'b' arrivent sur le port série
@@ -434,10 +434,47 @@ On note que de temps en temps, certains 'a' et 'b' se suivent.</p>
 série. L'alimentation se fait en 3.3 V. Cela est facile à faire car l'arduino
 dispose d'un pin 3.3V. Il est possible d'envoyer des signaux à cette carte pour
 lui demander de s'éteindre (OFF), de se mettre en veille (SLEEP) ou de se rallumer
-(WAKEUP)</p>
+(WAKEUP).
+Pour demander à la puce de lister l'ensemble des points d'accès wifi, on utilise
+la chaîne : &quot;AT+CWLAP&quot;.</p>
+</div>
+<div class="section" id="version-avec-1-arduino">
+<h1>Version avec 1 Arduino</h1>
+<p>Sur cette page (<a class="reference external" href="http://zeflo.com/2014/esp8266-weather-display/">http://zeflo.com/2014/esp8266-weather-display/</a>), il est dit qu'il est possible de donner
+un baud rate sur autre qu'un port série plus important. Avec cette hyppothèse, nous
+pouvons n'utiliser qu'un seul arduino pour communiquer avec la puce.</p>
+<p>Nous obtenons le code suivant :</p>
+<pre class="code C literal-block">
+<span class="comment preproc">#include &lt;SoftwareSerial.h&gt;
+</span>
+<span class="comment single">// déclaration des pins de communication avec la puce
+</span><span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">rxPin</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span>
+<span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">txPin</span> <span class="operator">=</span> <span class="literal number integer">11</span><span class="punctuation">;</span>
+
+<span class="name">SoftwareSerial</span> <span class="name">puce</span> <span class="operator">=</span> <span class="name">SoftwareSerial</span><span class="punctuation">(</span><span class="name">rxPin</span><span class="punctuation">,</span><span class="name">txPin</span><span class="punctuation">);</span>
+
+<span class="keyword type">void</span> <span class="name function">setup</span><span class="punctuation">(){</span>
+  <span class="name">Serial</span><span class="punctuation">.</span><span class="name">begin</span><span class="punctuation">(</span><span class="literal number integer">9600</span><span class="punctuation">);</span>
+  <span class="name">puce</span><span class="punctuation">.</span><span class="name">begin</span><span class="punctuation">(</span><span class="literal number integer">57600</span><span class="punctuation">);</span>
+  <span class="name">puce</span><span class="punctuation">.</span><span class="name">println</span><span class="punctuation">(</span><span class="literal string">&quot;AT+RST&quot;</span><span class="punctuation">);</span> <span class="comment single">// Reset de la puce
+</span>  <span class="name">puce</span><span class="punctuation">.</span><span class="name">println</span><span class="punctuation">(</span><span class="literal string">&quot;AT+CWLAP&quot;</span><span class="punctuation">);</span> <span class="comment single">// Demande de scan des wifi
+</span><span class="punctuation">}</span>
+
+<span class="keyword type">void</span> <span class="name function">loop</span><span class="punctuation">(){</span>
+  <span class="keyword">if</span> <span class="punctuation">(</span> <span class="name">puce</span><span class="punctuation">.</span><span class="name">available</span><span class="punctuation">()</span> <span class="punctuation">){</span>
+        <span class="name">Serial</span><span class="punctuation">.</span><span class="name">write</span><span class="punctuation">(</span><span class="name">puce</span><span class="punctuation">.</span><span class="name">read</span><span class="punctuation">());</span>
+  <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+</pre>
 </div>
 <div class="section" id="ressources-et-liens-utilises">
 <h1>ressources et liens utilisés</h1>
+<dl class="docutils">
+<dt>Numéros sur les composants <span class="classifier-delimiter">:</span> <span class="classifier">carré :</span></dt>
+<dd>ESP8266
+252014
+POHV54</dd>
+</dl>
 <p>Lors de cette semaine, nous avons utilisé les technologies suivantes :</p>
 <blockquote>
 <ul class="simple">
@@ -451,6 +488,19 @@ lui demander de s'éteindre (OFF), de se mettre en veille (SLEEP) ou de se rallu
 <ul class="simple">
 <li>Utilisation du module wifi avec arduino : <a class="reference external" href="http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module">http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module</a></li>
 <li>Documentation du module wifi : <a class="reference external" href="https://nurdspace.nl/ESP8266">https://nurdspace.nl/ESP8266</a></li>
+<li>exemple avec un capteur d'humidité en plus : <a class="reference external" href="http://zeflo.com/2014/esp8266-weather-display/">http://zeflo.com/2014/esp8266-weather-display/</a></li>
+<li>Video youtube d'explications sur la marche à suivre pour demarrer avec la puce : <a class="reference external" href="https://www.youtube.com/watch?v=9QZkCQSHnko">https://www.youtube.com/watch?v=9QZkCQSHnko</a></li>
+</ul>
+</blockquote>
+<p>Liens qui peuvent être intéressants :</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=qU76yWHeQuw">https://www.youtube.com/watch?v=qU76yWHeQuw</a></li>
+<li><a class="reference external" href="https://www.youtube.com/watch?v=uznq8W9sOKQ">https://www.youtube.com/watch?v=uznq8W9sOKQ</a></li>
+<li><a class="reference external" href="http://www.instructables.com/id/Using-the-ESP8266-module/">http://www.instructables.com/id/Using-the-ESP8266-module/</a></li>
+<li><a class="reference external" href="http://hackaday.com/tag/esp8266/">http://hackaday.com/tag/esp8266/</a></li>
+<li><a class="reference external" href="https://github.com/esp8266">https://github.com/esp8266</a></li>
+<li><a class="reference external" href="http://harizanov.com/2014/11/esp8266-powered-web-server-led-control-dht22-temperaturehumidity-sensor-reading/">http://harizanov.com/2014/11/esp8266-powered-web-server-led-control-dht22-temperaturehumidity-sensor-reading/</a></li>
 </ul>
 </blockquote>
 </div>
