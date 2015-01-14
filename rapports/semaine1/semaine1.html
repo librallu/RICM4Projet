@@ -366,6 +366,10 @@ qui nous donne la possibilité de faire une liaison série sur d'autres pins.</p
 deux arduino : Un qui envoie en continu un flux d'information (simulation des
 informations envoyées par la carte) et un qui est chargé de reçevoir ce flux
 et l'envoyer sur le PC via le port série.</p>
+<p>On note également que le baud rate doit être de 57.600 pour pouvoir communiquer
+avec la carte. Cependant l'arduino ne dispose que d'un baudrate de 19.200 sur
+<em>SoftwareSerial</em>. Il est donc nécessaire d'utiliser <em>Serial</em> pour communiquer avec
+la carte.</p>
 </div>
 <div class="section" id="arduinoswitch">
 <h1>ArduinoSwitch</h1>
@@ -373,7 +377,7 @@ et l'envoyer sur le PC via le port série.</p>
 <div class="figure">
 <object data="ressources/arduinoSwitch_bb.svg" type="image/svg+xml">
 montage pour arduinoSwitch</object>
-<p class="caption">Dans ce montage, l'arduino LEONARDO envoie sur son port série (pins 1 et 0)
+<p class="caption">Dans ce montage, l'arduino LEONARDO envoie sur les pins 10 et 11
 des données à l'arduino UNO qui est programmé pour reçevoir les données sur
 ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 </div>
@@ -381,7 +385,11 @@ ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 <pre class="code C literal-block">
 <span class="comment preproc">#include &lt;SoftwareSerial.h&gt;
 </span>
-<span class="name">SoftwareSerial</span> <span class="name function">bridge</span><span class="punctuation">(</span><span class="literal number integer">10</span><span class="punctuation">,</span><span class="literal number integer">11</span><span class="punctuation">);</span>
+<span class="comment single">// déclaration des pins de réception de donnée
+</span><span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">rxPin</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span>
+<span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">txPin</span> <span class="operator">=</span> <span class="literal number integer">11</span><span class="punctuation">;</span>
+
+<span class="name">SoftwareSerial</span> <span class="name">bridge</span> <span class="operator">=</span> <span class="name">SoftwareSerial</span><span class="punctuation">(</span><span class="name">rxPin</span><span class="punctuation">,</span><span class="name">txPin</span><span class="punctuation">);</span>
 
 <span class="keyword type">void</span> <span class="name function">setup</span><span class="punctuation">(){</span>
   <span class="name">bridge</span><span class="punctuation">.</span><span class="name">begin</span><span class="punctuation">(</span><span class="literal number integer">9600</span><span class="punctuation">);</span>
@@ -396,7 +404,11 @@ ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 <pre class="code C literal-block">
 <span class="comment preproc">#include &lt;SoftwareSerial.h&gt;
 </span>
-<span class="name">SoftwareSerial</span> <span class="name function">bridge</span><span class="punctuation">(</span><span class="literal number integer">10</span><span class="punctuation">,</span><span class="literal number integer">11</span><span class="punctuation">);</span>
+<span class="comment single">// déclaration des pins de réception de donnée
+</span><span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">rxPin</span> <span class="operator">=</span> <span class="literal number integer">10</span><span class="punctuation">;</span>
+<span class="keyword">const</span> <span class="keyword type">int</span> <span class="name">txPin</span> <span class="operator">=</span> <span class="literal number integer">11</span><span class="punctuation">;</span>
+
+<span class="name">SoftwareSerial</span> <span class="name">bridge</span> <span class="operator">=</span> <span class="name">SoftwareSerial</span><span class="punctuation">(</span><span class="name">rxPin</span><span class="punctuation">,</span><span class="name">txPin</span><span class="punctuation">);</span>
 
 <span class="keyword type">void</span> <span class="name function">setup</span><span class="punctuation">(){</span>
   <span class="name">Serial</span><span class="punctuation">.</span><span class="name">begin</span><span class="punctuation">(</span><span class="literal number integer">9600</span><span class="punctuation">);</span>
@@ -404,10 +416,25 @@ ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 <span class="punctuation">}</span>
 
 <span class="keyword type">void</span> <span class="name function">loop</span><span class="punctuation">(){</span>
-  <span class="keyword">if</span> <span class="punctuation">(</span> <span class="name">bridge</span><span class="punctuation">.</span><span class="name">available</span><span class="punctuation">()</span> <span class="operator">&gt;</span> <span class="literal number integer">0</span> <span class="punctuation">)</span>
-        <span class="name">Serial</span><span class="punctuation">.</span><span class="name">write</span><span class="punctuation">(</span><span class="name">bridge</span><span class="punctuation">.</span><span class="name">read</span><span class="punctuation">());</span>
-<span class="punctuation">}</span>
+  <span class="keyword">if</span> <span class="punctuation">(</span> <span class="name">bridge</span><span class="punctuation">.</span><span class="name">available</span><span class="punctuation">()</span> <span class="punctuation">)</span> <span class="comment single">// Si de l'information est disponible
+</span>        <span class="name">Serial</span><span class="punctuation">.</span><span class="name">write</span><span class="punctuation">(</span><span class="name">bridge</span><span class="punctuation">.</span><span class="name">read</span><span class="punctuation">());</span> <span class="comment single">// On lit les données sur le bridge et on écrit sur le serial
+</span><span class="punctuation">}</span>
 </pre>
+<p>Nous obtenons la sortie de l'aruino UNO suivante :</p>
+<div class="figure">
+<img alt="screen du test de bridge avec un arduino" src="ressources/screen1.png" />
+<p class="caption">On remarque bien que les caractères 'a' et 'b' arrivent sur le port série
+de l'ordinateur. Cela signifie que le bridge marche entre les deux arduino.
+On note que de temps en temps, certains 'a' et 'b' se suivent.</p>
+</div>
+</div>
+<div class="section" id="communication-avec-le-module-wifi">
+<h1>Communication avec le module wifi</h1>
+<p>La configuration du module wifi se fait via une émission de texte sur le port
+série. L'alimentation se fait en 3.3 V. Cela est facile à faire car l'arduino
+dispose d'un pin 3.3V. Il est possible d'envoyer des signaux à cette carte pour
+lui demander de s'éteindre (OFF), de se mettre en veille (SLEEP) ou de se rallumer
+(WAKEUP)</p>
 </div>
 <div class="section" id="ressources-et-liens-utilises">
 <h1>ressources et liens utilisés</h1>
@@ -422,7 +449,8 @@ ses pins 10 et 11 et les retransmettre sur son port série USB.</p>
 <p>Et les liens suivants :</p>
 <blockquote>
 <ul class="simple">
-<li><a class="reference external" href="http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module">http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module</a></li>
+<li>Utilisation du module wifi avec arduino : <a class="reference external" href="http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module">http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module</a></li>
+<li>Documentation du module wifi : <a class="reference external" href="https://nurdspace.nl/ESP8266">https://nurdspace.nl/ESP8266</a></li>
 </ul>
 </blockquote>
 </div>

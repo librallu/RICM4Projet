@@ -1,6 +1,10 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial bridge(10,11);
+// déclaration des pins de réception de donnée
+const int rxPin = 10;
+const int txPin = 11;
+
+SoftwareSerial bridge = SoftwareSerial(rxPin,txPin);
 
 void setup(){
   bridge.begin(9600); 
