@@ -62,7 +62,11 @@ message d'erreur suivant pendant l'exécution de la commande *make* :
 Cela vient du fait que dans le fichier *tools/esptool.py*, la
 première ligne : *#!/usr/bin/env python* fait référence à l'interpréteur
 python ayant la version 3.4. Or dans cette version, l'instruction *print*
-devient une fonction comme une autre et il est nécessaire 
+devient une fonction comme une autre et il est nécessaire de forcer le passage
+a python2.7 en remplaçant la ligne *#!/usr/bin/env python* par *#!/usr/bin/env python2.7*
+
+Note : Ce correctif ne devrait pas être nécessaire pour des distributions comme
+ubuntu.
 
 
 Ressources Utiles
