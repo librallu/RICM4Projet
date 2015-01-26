@@ -69,13 +69,6 @@ Note : Ce correctif ne devrait pas être nécessaire pour des distributions comm
 ubuntu.
 
 
-Ressources Utiles
------------------
-
-- http://gpio.kaltpost.de/?p=2082
-- https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
-- http://mercurylang.org/documentation/papers/CW2004_03_mazur.pdf
-
 Research on garbage collectors
 ------------------------------
 
@@ -127,4 +120,12 @@ language who will be able to generate code directly runable without garbage
 collecting.
 
 
+Ressources Utiles
+-----------------
+
+- http://gpio.kaltpost.de/?p=2082
+- https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
+- http://mercurylang.org/documentation/papers/CW2004_03_mazur.pdf
+- http://courses.cs.washington.edu/courses/csep521/07wi/prj/rick.pdf
+- http://spin.atomicobject.com/2014/09/03/visualizing-garbage-collection-algorithms/
 
