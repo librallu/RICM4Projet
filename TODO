@@ -1,0 +1,20 @@
+Utile pour travailler avec le hardware :
+
+ - trouver un moyen efficace de faire une communication PC <-> port série (console)
+ 
+ 
+État du projet précédent :
+
+ - pour la traduction de programmes python pour être portés sur la carte,
+   il y a des fonctions du genre 'gettimeofday()' qui demande une information 
+   que la carte n'aura pas forcément. Comment faire ?
+ 
+ - Certains modules sont manquants dans Shedskin (car il ne les supporte pas encore)
+   il serait intéressant de regarder le code de shedskin et de proposer un patch pour en supporter
+   d'avantage.
+   
+ - Gestion du print() plus élaboré. Il semble marcher pour les types de base,
+   mais il peut également afficher des objets plus compliqués comme des listes
+   ou des dictionnaires. Dans ce cas, il faudrait voir si il est possible
+   de faire de l'introspection dans l'objet donné afin de récupérer le code
+   a exécuter dans la méthode de l'objet __str__
