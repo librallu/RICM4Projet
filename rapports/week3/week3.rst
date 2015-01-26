@@ -5,7 +5,7 @@ week 3
 We have several ways to make applications on the ESP8266 :
 
 
- - **C with Xtensa Toolchain :**A simple way to run programs on ESP8266.
+ - **C with Xtensa Toolchain :** A simple way to run programs on ESP8266.
    For it, we need to install the Xtensa Toolchain (we need to compile it on
    Linux, it takes nearly 30 min). Then, we can compile executables for ESP8266.
      
@@ -17,7 +17,7 @@ We have several ways to make applications on the ESP8266 :
 
 
 
- - **Micropython framework :**Allows to program ESP8266 with a recent
+ - **Micropython framework :** Allows to program ESP8266 with a recent
    version of python (3.4).
    
    Pro :
@@ -28,7 +28,7 @@ We have several ways to make applications on the ESP8266 :
     - It has not libraries to use wifi
  
  
- - **Python to C++ via Shedskin :**Allows to program ESP8266 with python 2.7
+ - **Python to C++ via Shedskin :** Allows to program ESP8266 with python 2.7
    by compiling it to C++.
    
    Pro :
