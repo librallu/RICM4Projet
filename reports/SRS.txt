@@ -1,0 +1,152 @@
+The document provides a template of the Software Requirements Specification (SRS). It is inspired of the IEEE/ANSI 830-1998 Standard.
+
+
+'''Read first:'''
+* http://www.cs.st-andrews.ac.uk/~ifs/Books/SE9/Presentations/PPTX/Ch4.pptx
+* http://en.wikipedia.org/wiki/Software_requirements_specification
+* [http://www.cse.msu.edu/~chengb/RE-491/Papers/IEEE-SRS-practice.pdf IEEE Recommended Practice for Software Requirements Specifications IEEE Std 830-1998]
+
+ {|class="wikitable alternance"
+ |+ Document History
+ |-
+ |
+ !scope="col"| Version
+ !scope="col"| Date
+ !scope="col"| Authors
+ !scope="col"| Description
+ !scope="col"| Validator
+ !scope="col"| Validation Date
+ |-
+ !scope="row" |
+ | 0.1.0
+ | Jan 26 2015
+ | Luc Libralesso - Olivier Soldano
+ | TBC
+ | TBC
+ | TBC
+
+ |}
+
+
+=1.   Introduction=
+
+
+==1.1   Purpose of the requirements document==
+
+The purpose of the project is to implement a toolchain that allows to write programs
+in a high level language (in this case python2.7), compile it into a low level language
+like C or C++ and compile it with an other toolchain for running this program on an arduino-like board.
+
+
+==1.2   Scope of the product==
+
+For a given arduino-like board, we want to generate C++ code from given python code that compiles in a
+given toolchain.
+
+
+==1.3   Definitions, acronyms and abbreviations==
+
+* Toolchain : set of tools that compiles a program for a given processor
+* C,C++,python: Programming languages
+* high level language : a language alike natural language
+* low level language : a language alike assembly language
+* IoT : Internet of Things
+
+==1.4   References==
+
+==1.5   Overview of the remainder of the document==
+
+=2.   General description=
+
+
+==2.1   Product perspective==
+
+This project use the python2.7 language specifications for it's inputs.
+It's output generate executables for Xtensa processors by means of the Xtensa toolchain.
+
+[[File:Device flow.png]]
+
+
+
+==2.2   Product functions==
+
+Functions : 
+
+* Compile Python files to C++ files
+* Run executables on some processors (like ESP8266)
+
+==2.3   User characteristics==
+
+Users need to be able to :
+ 
+* Use command line
+* Compile Xtensa and others toolchains
+* Connect their device to the USB port of their PC for UART
+
+==2.4   General constraints==
+
+* Hardware limitations : On some devices like ESP8266, memory heap is limited so, we need to have a compiler that makes small executables.
+* Parallel operations : For the wifi feature, we need to have a real time system. Consequently, it's difficult to implement a garbage collector.
+
+==2.5   Assumptions and dependencies==
+
+We assume that :
+
+* The user has a serial cable to bind his PC and his card.
+
+=3.Specific requirements, covering functional, non-functional and interface requirements=
+* maintenance : scaleable code 
+* robust : each command is correctly executed
+* useable : easy to use and get started with
+* ethic : free software and well crafted code (PEP8 tests for instance)
+* space : the memory heap limited on ESP8266 so we need a small executable file
+
+==3.1 Requirement X.Y.Z (in Structured Natural Language)==
+
+'''Function''': Provide a way to compile python to C++ and C++ to assembly language for a specific chip.
+
+'''Description''': Our project consists to use a previous work at Polytech'Grenoble to implement
+a python-C++ translator and use the Xtensa toolchain to compile programs on ESP8266.
+
+'''Inputs''': Source program in python2.7 and a given microchip (here ESP8266)
+
+'''Source''': a compiler python-C++ (Shedskin) with a toolchain (Xtensa)
+
+'''Outputs''': a program uploaded on the card compiled from the input source program.
+
+'''Destination''': All the people who is interested in the IoT.
+
+'''Action''': Compiles Python to C++ and compile C++ to assembly language for a specific chip.
+
+
+
+
+
+'''Non functional requirements''':
+
+* maintenance : scaleable code 
+* robust : each command is correctly executed
+* useable : easy to use and get started with
+* ethic : free software and well crafted code (PEP8 tests for instance)
+* space : the memory heap limited on ESP8266 so we need a small executable file
+
+'''Pre-condition''':
+
+* the use must have the required hardware (card, cable) and software (Xtensa installed)
+
+'''Post-condition''':
+
+* The user gets a compiled version of his program on his chip.
+
+'''Side-effects''':
+
+=4. Product evolution=
+
+With this project, we have a way to compile high level languages to C, C++.
+
+For further applications, we can compile others languages like lua, OCaml ...
+
+We can also port another cards and others features.
+
+=5. Appendices=
+=6. Index=
