@@ -1,8 +1,14 @@
 # RICM4Projet
-Projet pour l'école Polytech'Grenoble portant sur l'intégration d'un support 
-des cartes STM32F4-Discovery à l'outil Shedskin (qui permet de traduire Python vers C++)
 
 
-## Rapports des différentes semaines
+Project for the engineering school Polytech'Grenoble. The aim of this project
+is to use the tool shedskin (which translates Python to C++) and generates
+assembly code for the devices STM32F4-Discovery and ESP8266.
 
-semaine 1 : https://github.com/librallu/RICM4Projet/blob/master/rapports/semaine1/semaine1.rst
+
+## weekly notes
+
+ - week 1 : https://github.com/librallu/RICM4Projet/blob/master/rapports/week1/week1.rst
+ - week 2 : https://github.com/librallu/RICM4Projet/blob/master/rapports/week2/week2.rst
+ - week 3 : https://github.com/librallu/RICM4Projet/blob/master/rapports/week3/week3.rst
+
