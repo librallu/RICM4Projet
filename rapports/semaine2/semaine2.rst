@@ -73,7 +73,8 @@ Ressources Utiles
 -----------------
 
 - http://gpio.kaltpost.de/?p=2082
-
+- https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
+- http://mercurylang.org/documentation/papers/CW2004_03_mazur.pdf
 
 Research on garbage collectors
 ------------------------------
@@ -111,13 +112,19 @@ need atomicity, wich cannot be provided by the ESP8266 platform.
 
 The second problem we faced is the real time factor.
 Indeed this platform has to manage real time actions such as any interuption
-for garbage collecting will impact performance, and cause errors in transfers. 
+for garbage collecting will impact performance, and cause errors in transfers.
+
+We stumbled upon a method of garbage collecting that does not necessitates
+the interuption of activity, the *compile-time* garbage collecting.
+we read a thesis on this subject adapted to the mercury language wich is
+a pure declarative logical language.
+This language is way more strict and hard to handle than python, and in the
+scope of end user programing it is impossible to propose such a language.
+
+In conclusion of this research we must find another way to handle the memory,
+maybe by dropping the idea of using python and C++ and switch to another
+language who will be able to generate code directly runable without garbage
+collecting.
 
 
- 
 
-useful links
-------------
-
- - https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
- - http://mercurylang.org/documentation/papers/CW2004_03_mazur.pdf
