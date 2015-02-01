@@ -1,72 +1,68 @@
-Test de micropython sur STM32
+Test of micropython on STM32
+----------------------------
+
+After following the installation method presented here (https://github.com/micropython/micropython),
+the STM32 card worked well with micropython and an interactive shell was available.
+
+
+
+Xtensa Toolchain installation
 -----------------------------
 
-Après avoir suivi la méthode d'installation décrite ici (https://github.com/micropython/micropython).
-La carte STM32 fonctionnait avec micropython et un shell interactif était disponible
-sur nos machines pour lancer des commandes python sur la carte.
+Used to install the toolchain for using the card :
 
-
-Installation du toolchain
--------------------------
-
-Installer le toolchain pour utiliser la carte :
-
- - récupérer les sources ici (*git clone https://github.com/pfalcon/esp-open-sdk*).
+ - get sources here (*git clone https://github.com/pfalcon/esp-open-sdk*).
  - cd *esp-open-sdk*.
- - *make STANDALONE=y* ou *make STANDALONE=n* (temps estimé 30 à 40 min). 
-   Il y a deux options car certains composants
-   du sdk ne sont pas libres, en indiquant l'option *y* tout sera intégré en un tout
-   ce qui sera simple pour compiler des programmes mais rend les mises à jour de ceux-ci
-   plus difficile. 
- - ajouter *export PATH=[chemin vers le sdk]/esp-open-sdk/xtensa-lx106-elf/bin:$PATH*
-   dans le **.bashrc** ou l'entrer dans le terminal
- - les commandes *xtensa-lx106-elf-gcc*, *xtensa-lx106-elf-g++*, ...
-   sont maintenant disponibles.
+ - *make STANDALONE=y* or *make STANDALONE=n* (estimated time 30 à 40 min).
+ - There is two options because some parts of the SDK are not free. *y* option
+   integrates all, which is easier to install but makes updates more difficult.
+ - add *export PATH=[path to sdk]/esp-open-sdk/xtensa-lx106-elf/bin:$PATH*
+   in your **~/.bashrc**
+ - commands like *xtensa-lx106-elf-gcc*, *xtensa-lx106-elf-g++*, ... are now available !
 
 
- 
-Plus d'informations ici : https://github.com/pfalcon/esp-open-sdk
+More informations here : https://github.com/pfalcon/esp-open-sdk
+
 
 
 Nodemcu
 -------
 
-Nous avons également jetté un oeil à **nodemcu** qui permet de programmer
-l'ESP8266 en *Lua* : https://github.com/nodemcu/nodemcu-firmware.
+We also looked at **nodemcu** which allows to program the ESP8266 with
+*Lua* language : https://github.com/nodemcu/nodemcu-firmware.
 
-Cela permettrait d'avoir une manière simple de réaliser des programmes 
-tout en ayant des exécutables petits. Ce qui peut être intéressant.
+It make it possible to have a simple way to make programs and having
+small executables. It can be interesting.
 
-Pour l'installer, il est nécessaire d'avoir installé xtensa avant (voir section
-ci-dessus)
-
-
-
-**procédure d'installation :**
-
- - Commençons par récupérer le firmware ici : *git clone https://github.com/nodemcu/nodemcu-firmware*
- - Nous pouvons maintenant le compiler en se déplaçant dans le répertoire en question et en entrant la 
-   commande *make*
+To install it, it is necessary to have xtensa (e.g. precedent section)
 
 
 
+**Installation :**
 
-**Problèmes résolus : **
+ - First of all, we need to get the firmware here : *git clone https://github.com/nodemcu/nodemcu-firmware*
+ - Now, we can compile it by moving to the repository directory and launch the command *make*.
 
-Lors d'une première compilation sur *archlinux*, nous avons obtenu le
-message d'erreur suivant pendant l'exécution de la commande *make* :
+
+
+**Solved problems :**
+
+In the first compilation on *archlinux*, we get the following error message
+when executing the command *make* :
 
 	  File "../tools/esptool.py", line 131
 		print 'Connecting...'
 							^
-Cela vient du fait que dans le fichier *tools/esptool.py*, la
-première ligne : *#!/usr/bin/env python* fait référence à l'interpréteur
-python ayant la version 3.4. Or dans cette version, l'instruction *print*
-devient une fonction comme une autre et il est nécessaire de forcer le passage
-a python2.7 en remplaçant la ligne *#!/usr/bin/env python* par *#!/usr/bin/env python2.7*
 
-Note : Ce correctif ne devrait pas être nécessaire pour des distributions comme
-ubuntu.
+It comes that in the file *tools/esptools.py*, the first line : *#!/usr/bin/env python*
+references the version 3.4 of python and the script needs python2.7.
+That is why print does not work. If we want to stay in python3.4, we
+need to replace *print 'hello'* by *print('hello')*.
+Or, we can replace *#!/usr/bin/env python* py *#!/usr/bin/env python2.7*
+
+Note : Those changes are not necessary for distributions like Ubuntu because
+their current version of the python interpreter is the 2.7
+
 
 
 Research on garbage collectors
@@ -120,8 +116,8 @@ language who will be able to generate code directly runable without garbage
 collecting.
 
 
-Ressources Utiles
------------------
+Ressources and links used
+-------------------------
 
 - http://gpio.kaltpost.de/?p=2082
 - https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
