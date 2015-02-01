@@ -1,8 +1,8 @@
-Semaine 1
-=========
+Week 1
+======
 
-Présentation
-------------
+Overview
+--------
 
 During this first week, we focused on running the *ESP8266* first on *arduino*
 board to ensure we understand how the wifi module is functionning, before
@@ -10,8 +10,9 @@ going on with the project.
 
 as a reminder:
 	- *arduino* allows rapid prototyping of electronic circuits, and is
-	programable	by way of a language similar to C.
+	  programable	by way of a language similar to C.
 	- *ESP8266* is a chip costing 3-4€ allowing to use wifi protocols.
+
 
 One of our problems is to ensure that the wifi card does what we demand,
 means of a debuging output on our computer. However, the wifi card uses the
@@ -104,6 +105,7 @@ Communicate with the wifi module
 The wifi module setup is made by sending ascii strings on it's serial port.
 The power supply intput is 3.3V, easy to provide via the arduino 3.3V pin.
 We give some examples of signals understandable by the card:
+
 	- "OFF": shutdown the card
 	- "SLEEP": puting the card in sleep mode
 	- "WAKEUP": exitig sleep mode
