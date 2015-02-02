@@ -63,6 +63,43 @@ Some informations about ESP8266
  - 200kb of ROM
  - 32kb sram
  - 80kb dram
+ 
+ 
+Translations
+------------
+ 
+ After reading the specs we stumbled upon the fact that our documents have
+ to be writen in english. So we had to translate all of our documents produced
+ since the begining of the project.
+ 
+
+Using the UART of the ESP8266
+-----------------------------
+
+In order to connect directly to the ESP module, avoiding the third party
+card solution, we thought to use a Serial to UART converter to use an USB
+port to communicate with the module.
+The solution is rather easy as many USB to serial converter are existing.
+The problem is that they are probably providing too much voltage, as the
+ESP8266 runs on 3,3V and the USB port is on 5V.
+We where orientated toward making a reducer bridge for switching from 5V
+to 3,3V to adapt a USB to RS232 plug that we were provided after asking 
+for UART to USB converter. After making several measurements at the FABLab
+
+.. figure:: resource/RS232measurements.svg
+	:alt: RS232 serial output voltage
+	
+	we reached two conclusion:
+		- first that every pin on the RS232 plug (except ground)
+		is giving either 5V in UP mode, or 0v in DOWN mode
+		- and secondly that it will be to much work converting **every** pin
+		with a dedicated bridge, without speaking of the "user friendly"
+		side of our project.
+	
+With these conclusions we have been able to push serious argument to obtain
+a USB to 3,3V UART module. We will normaly have access to this piece of
+hardware next week.  	
+ 
 
 
 Useful Links
