@@ -1,3 +1,17 @@
+In this week, we want to compile a simple C or C++ program and execute
+it on the ESP8266.
+
+We tried to compile and flash the ESP with the programs here : 
+https://github.com/esp8266/source-code-examples
+
+Unfortunatly, due to incompatibility problems with our system (archlinux) 
+we aren't yet able to compile programs.
+
+	/home/librallu/esp8266/xtensa-toolchain-build/bin/../lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/bin/ld: ne peut trouver -lc
+	/home/librallu/esp8266/xtensa-toolchain-build/bin/../lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/bin/ld: ne peut trouver -lhal
+
+Next week, we will try on a more standard linux distribution : Linux Mint with
+the hope that it will work this time.
 
 
 Useful Links
