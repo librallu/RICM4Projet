@@ -60,3 +60,10 @@ Error with ld :
     collect2: erreur: ld a retourné 1 code d'état d'exécution
     make: *** [image.elf] Error 1
 
+
+
+Another work
+============
+
+
+ - We made a svg image of the ESP8266 to integrate it with fritzing.
