@@ -61,6 +61,11 @@ Error with ld :
     make: *** [image.elf] Error 1
 
 
+It seems that there is an installation problem with xtensa. For fixing this,
+we create a new folder in *~/esp8266/xtensa-toolchain-build/build-lx106/root/xtensa-lx106-elf/ld*
+and copy into it *~/esp8266/esp_iot_sdk_v0.9.3/ld/eagle.rom.addr.v6.ld*
+
+
 
 Another work
 ============
