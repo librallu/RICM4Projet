@@ -123,3 +123,9 @@ Another work
 
 
  - We made a svg image of the ESP8266 to integrate it with fritzing.
+ 
+ 
+Useful Links
+============
+
+ - http://41j.com/blog/2015/01/esp8266-sdk-library-symbols/

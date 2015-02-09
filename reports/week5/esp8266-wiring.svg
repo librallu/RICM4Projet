@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="esp8266.svg">
+   sodipodi:docname="esp8266-wiring.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -193,6 +193,33 @@
        height="23.233509"
        x="381.33258"
        y="455.36203" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="205.06096"
+       y="635.16919"
+       id="text4272"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4274"
+         x="205.06096"
+         y="635.16919">VCC       RX</tspan><tspan
+         sodipodi:role="line"
+         x="205.06096"
+         y="685.16919"
+         id="tspan4280">RESET   GPIO0</tspan><tspan
+         sodipodi:role="line"
+         x="205.06096"
+         y="735.16919"
+         id="tspan4282">CH_PD   GPIO2</tspan><tspan
+         sodipodi:role="line"
+         x="205.06096"
+         y="785.16919"
+         id="tspan4288">TX         GND</tspan><tspan
+         sodipodi:role="line"
+         x="205.06096"
+         y="835.16919"
+         id="tspan4286" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
