@@ -67,6 +67,50 @@ and copy into it *~/esp8266/esp_iot_sdk_v0.9.3/ld/eagle.rom.addr.v6.ld*
 
 
 
+Error when burning :
+
+    FW 0x00000.bin
+    ~/esp8266/other/esptool/esptool -eo image.elf -bo 0x00000.bin -bs .text -bs .data -bs .rodata -bc -ec
+    FW 0x40000.bin
+    ~/esp8266/other/esptool/esptool -eo image.elf -es .irom0.text 0x40000.bin -ec
+    (~/esp8266/esptool/esptool.py --port /dev/ttyUSB0 write_flash 0x00000 0x00000.bin 0x40000 0x40000.bin)||(true)
+    Traceback (most recent call last):
+      File "/home/librallu/esp8266/esptool/esptool.py", line 470, in <module>
+        esp = ESPROM(args.port, args.baud)
+      File "/home/librallu/esp8266/esptool/esptool.py", line 66, in __init__
+        self._port = serial.Serial(port, baud)
+      File "/usr/lib/python2.7/dist-packages/serial/serialutil.py", line 261, in __init__
+        self.open()
+      File "/usr/lib/python2.7/dist-packages/serial/serialposix.py", line 278, in open
+        raise SerialException("could not open port %s: %s" % (self._port, msg))
+    serial.serialutil.SerialException: could not open port /dev/ttyUSB0: [Errno 13] Permission denied: '/dev/ttyUSB0'
+
+For fixing this, we need to add user to with *usermod* this command
+
+    sudo usermod -a -G dialout $USER
+
+and reboot.
+    
+    sudo reboot
+
+
+Another error when burning :
+
+    (^_^)[librallu@Tomoyo:~/esp8266/ws2812esp8266]$ make burn
+    (~/esp8266/esptool/esptool.py --port /dev/ttyUSB0 write_flash 0x00000 0x00000.bin 0x40000 0x40000.bin)||(true)
+    Connecting...
+    Traceback (most recent call last):
+      File "/home/librallu/esp8266/esptool/esptool.py", line 471, in <module>
+        esp.connect()
+      File "/home/librallu/esp8266/esptool/esptool.py", line 149, in connect
+        raise Exception('Failed to connect')
+    Exception: Failed to connect
+
+This problem comes from a bad wiring :
+
+We need to put GPIO0 low and CH_PD high.
+we also plug RX, TX, VCC, GND.
+
 Another work
 ============
 
