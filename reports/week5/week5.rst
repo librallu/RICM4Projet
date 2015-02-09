@@ -112,6 +112,20 @@ We need to put GPIO0 low and CH_PD high.
 we also plug RX, TX, VCC, GND.
 
 
+Wiring shematics
+================
+
+We can distinguish two modes :
+
+- **run mode** that runs programs 
+- **flash mode** that allows to flash programs
+
+.. figure:: run_bb.svg
+	:alt: run mode wiring
+	
+.. figure:: flash_bb.svg
+	:alt: flash mode wiring
+
 Conclusions
 ===========
 
