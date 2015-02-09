@@ -111,6 +111,13 @@ This problem comes from a bad wiring :
 We need to put GPIO0 low and CH_PD high.
 we also plug RX, TX, VCC, GND.
 
+
+Conclusions
+===========
+
+We are now able to compile images from C, C++ and burn it on the card.
+In the next week, we will focus on how code programs to run on the card.
+
 Another work
 ============
 
