@@ -127,11 +127,6 @@
 			font-size: 1.4em;
 		}
 		
-		header.major .byline img {
-			width: 75%;
-			margin-top: 30px;
-			margin-left: 12.5%;
-		}
 
 	footer > :last-child {
 		margin-bottom: 0;
@@ -437,6 +432,32 @@
 		-ms-transition: all 0.35s ease-in-out;
 		transition: all 0.35s ease-in-out;
 	}
+	
+	.button2 {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-o-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		background: none;
+		border-radius: none;
+		border: 2px solid;
+		border-color: #FFF;
+		color: #FFF;
+		cursor: pointer;
+		display: inline-block;
+		padding: 0.90em 1.2em;
+		letter-spacing: 1px;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 1.4em;
+		-moz-transition: all 0.35s ease-in-out;
+		-webkit-transition: all 0.35s ease-in-out;
+		-o-transition: all 0.35s ease-in-out;
+		-ms-transition: all 0.35s ease-in-out;
+		transition: all 0.35s ease-in-out;
+	}
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
@@ -444,6 +465,11 @@
 		.button:hover {
 			background: #4082b4;
 			color: white;
+		}
+		
+		.button2:hover {
+			background: white;
+			color: #4082b4;
 		}
 
 		input[type="submit"].alt,
