@@ -14,6 +14,9 @@ An idea for making this module is to take similar specifications of the
 It's possible to make a virtualBox with all the toolchain installed.
 It can be the simplier way to distribute our contributions.
 
+We've also looked at cython that is a way to make programs in python with
+C types for making optimized programs. It can be a good compromise.
+
 Useful Links
 ============
 
