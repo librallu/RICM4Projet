@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">	
+<head>
+<meta charset="utf-8">
+<title>Python on ESP8266 - Midway Presentation</title>
+<link rel="stylesheet" href="file:///home/librallu/RICM/S8/anglais/pres_MagicLeap/reveal.js/css/reveal.css">
+<link rel="stylesheet" href="file:///home/librallu/RICM/S8/anglais/pres_MagicLeap/reveal.js/css/theme/sky.css" id="theme">	
+<!--Add support for earlier versions of Internet Explorer -->
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+</head>
+ 
+<body>
+<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+<div class="reveal">
+<!-- Wrap all slides in a single "slides" class -->
+<div class="slides">
+	
+ 
+	<!-- ALL SLIDES GO HERE -->
+	<!-- Each section element contains an individual slide -->
+	<section>
+	<h2>Python on ESP8266</h2>
+	<h3>Midway Presentation</h3>
+	<img height="300px;" src="esp.jpg" />
+	<h4>Luc Libralesso - Olivier Soldano</h4>
+	</section>
+	
+	<section>
+		
+		<section>
+			<h3>So far</h3>
+			<ul>
+				<li>Understand the ESP8266 ecosystem</li>
+				<li>Notes about how to run/flash the ESP8266</li>
+				<li>Use Xtensa toolchain to compile a hello world program</li>
+				<li>Simple shedskin module</li>
+				<li>Presentation page for the project</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>The ESP8266 ecosystem</h3>
+			<img src="compile_ways.png" alt="ESP8266 ecosystem" />
+		</section>
+		
+		<section>
+			<a href="http://librallu.github.io/RICM4Projet/">website</a>
+		</section>
+		
+		<section>
+			<img src="wires.jpg" width=50% alt="how to wire the ESP8266" /> 	
+		</section>
+		
+	</section>
+	
+	<section>
+		<h3>Todo</h3>
+		<ul>
+			<li>A deeper understanding about how Xtensa compilator works</li>
+			<li>Wifi modules for ESP8266 manipulation in Python</li>
+			<li>Benchmark
+				<ul>
+					<li>Test the computation performance of our project</li>
+					<li>Compare our project to nodeMCU project</li>
+				</ul>
+			</li>
+			<li>Work on adding a garbage collector (?)</li>
+		</ul>
+	</section>
+
+
+
+ 
+</div>
+</div>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+ 
+<script>
+// Required, even if empty.
+Reveal.initialize({});
+</script>
+
+
+
+</body>
+</html>
