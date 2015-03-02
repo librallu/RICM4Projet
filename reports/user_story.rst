@@ -25,5 +25,3 @@ Task over when
 ==============
 
 We have a functionnal prototype
-
-
