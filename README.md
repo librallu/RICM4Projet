@@ -1,10 +1,10 @@
 # RICM4Projet
 
+Project website : http://librallu.github.io/RICM4Projet/
 
 Project for the engineering school Polytech'Grenoble. The aim of this project
 is to use the tool shedskin (which translates Python to C++) and generates
 assembly code for the devices STM32F4-Discovery and ESP8266.
-
 
 ## weekly notes
 

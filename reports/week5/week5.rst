@@ -120,10 +120,10 @@ We can distinguish two modes :
 - **run mode** that runs programs 
 - **flash mode** that allows to flash programs
 
-.. figure:: run_bb.svg
+.. figure:: run.png
 	:alt: run mode wiring
 	
-.. figure:: flash_bb.svg
+.. figure:: flash.png
 	:alt: flash mode wiring
 
 Conclusions
@@ -132,14 +132,21 @@ Conclusions
 We are now able to compile images from C, C++ and burn it on the card.
 In the next week, we will focus on how code programs to run on the card.
 
+For the following weeks, we will focusing on 
+ 
+ - adding python libraries for ESP8266 manipulation
+ - making C or C++ libraries for ESP8266
+
+
 Another work
 ============
 
 
  - We made a svg image of the ESP8266 to integrate it with fritzing.
- 
+
  
 Useful Links
 ============
 
  - http://41j.com/blog/2015/01/esp8266-sdk-library-symbols/
+ - (shedskin documentation) https://code.google.com/p/shedskin/wiki/docs
