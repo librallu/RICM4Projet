@@ -73,10 +73,9 @@ a system of inbeded garbage collecting for our code.
 
 We first reached the cheney algorithm in an idea of speed performance in a real time aproach.
 This algorithm is a prototype of all the tracing algorithms we found further,
-it consists in evaluating the memory links between the heap and the stack
-of the program, when the heap does not references a zone in the stack anymore
-it automatically deallocate this zone.
-the cheney algorithm works by splitting the free space in the stack into
+it consists in evaluating the memory links in the heap of the program,
+when the heap does not references a zone anymore it automatically deallocate this zone.
+The cheney algorithm works by splitting the free space in the stack into
 two equal parts. The memory allocation begins in one of them, when it's 
 nearly full or when the GC is forced, the GC evaluates the memory links
 and when one is found a copy of the referenced memory zone is made to the
@@ -88,11 +87,11 @@ first place.
 With the ESP8266 we cannot afford this expense in memory as we only have
 80kb of RAM inbound.
 
-We do have to use another algorithm of garbage collectingif we want to use C++ in fine, 
+We do have to use another algorithm of garbage collecting if we want to use C++ **in fine**, 
 but still a tracing algorithm, reference counting algorithms are not viable
 for our project for the same memory reasons as the cheney algorithm 
 (each object generates another of constant size). Moreover these algorithms
-need atomicity, wich cannot be provided by the ESP8266 platform.
+need atomicity.
 
 The second problem we faced is the real time factor.
 Indeed this platform has to manage real time actions such as any interuption
