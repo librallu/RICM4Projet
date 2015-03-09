@@ -108,4 +108,5 @@ and it will be possible to add some features in the future versions of the proje
 Useful Links
 ============
 
+- https://pypi.python.org/pypi/astmonkey/0.1.1
 - https://bitbucket.org/haypo/astoptimizer
