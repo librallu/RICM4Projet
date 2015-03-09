@@ -87,3 +87,25 @@ We get the following output :
 	:width: 90%
 
 	Graphical output of the AST for the example program.
+	
+
+Now, we have a AST, it's possible to make some optimisations (with the *AST Optimizer* project),
+That returns an equivalent AST that is optimized.
+
+The next step is to make an interpreter that reads the AST and generate C++
+code. If we continue on the C++ generation path, we can begin by adding
+some native types in C++ like integers, Strings and lists because they
+are widely used in python.
+
+With this, we can make some python modules and python primitives to 
+run the ESP features in python.
+
+It will be a very restricted subset of python, therefore, it will be simple
+and it will be possible to add some features in the future versions of the project.
+
+
+
+Useful Links
+============
+
+- https://bitbucket.org/haypo/astoptimizer
