@@ -104,6 +104,35 @@ It will be a very restricted subset of python, therefore, it will be simple
 and it will be possible to add some features in the future versions of the project.
 
 
+To make human readable C++ outputs, it's possible to use the *indent* unix command
+that indent properly a C/C++ file. 
+
+
+
+Command to add the SDK in the compilation process
+-------------------------------------------------
+
+xtensa-lx106-elf-g++ -I/home/librallu/esp8266/esp-open-sdk/sdk/include -L/home/librallu/esp8266/esp-open-sdk/sdk/lib
+
+
+Installation process
+--------------------
+
+- mkdir ~/esp8266/
+- cp ~/esp8266/
+- git clone https://github.com/pfalcon/esp-open-sdk
+- sudo apt-get install make unrar autoconf automake libtool gcc g++ gperf \
+    flex bison texinfo gawk ncurses-dev libexpat-dev python sed
+- make STANDALONE=y
+- cd esp-open-sdk/esptool
+- sudo python setup.py install
+- cd ~/esp8266
+- git clone https://github.com/tommie/esptool-ck.git
+- cd esptool-ck
+- make
+
+
+
 
 Useful Links
 ============

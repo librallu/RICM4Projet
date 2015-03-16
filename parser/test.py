@@ -8,14 +8,14 @@ def parseprint(code, filename="<string>", mode="exec", **kwargs):
 	print(ast.dump(node, **kwargs))
 
 source = """
-l = [1,2,3]
-for i in l:
-	print("hello {} !".format(i))
+l = k = [1,2,3]
+i = a = 0
+while i < 3:
+	a = a+1
 """
 parseprint(source)
 node = ast.parse(source)
 node = transformers.ParentNodeTransformer().visit(node)
 visitor = visitors.GraphNodeVisitor()
 visitor.visit(node)
-
 visitor.graph.write_png('graph.png')
