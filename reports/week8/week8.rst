@@ -89,16 +89,35 @@ We get the following output :
 	Graphical output of the AST for the example program.
 
 
+
+Now, we have a AST, it's possible to make some optimisations (with the *AST Optimizer* project),
+That returns an equivalent AST that is optimized.
+
+The next step is to make an interpreter that reads the AST and generate C++
+code. If we continue on the C++ generation path, we can begin by adding
+some native types in C++ like integers, Strings and lists because they
+are widely used in python.
+
+With this, we can make some python modules and python primitives to 
+run the ESP features in python.
+
+It will be a very restricted subset of python, therefore, it will be simple
+and it will be possible to add some features in the future versions of the project.
+
+
+
 Shedskin module generation
 ==========================
 
-In order to clarify any further creation of module you can found below the sequence:
+This section enacts as a personnal note as much as a notice for further works on this project.
+
+In order to clarify any further creation of module you can found below the sequence explained:
 
 	- First: create a python file containing function interface only,
 	example of a function with one argument returning a list
 		def dummy_fun(toto):
 			return[1]
-	this is to help shedskin to perform a part of type inference (return type here a list).
+	this is to help shedskin to perform a part of type inference (return type, here a list).
 	
 	- Next: create a simple python program with your function to make 
 	shedskin able to perform the full type analysis (arguments),
@@ -109,3 +128,11 @@ In order to clarify any further creation of module you can found below the seque
 	
 	- Finally you can complete the .cpp and .hpp with your personnal code
 	implementing functions interfaces in C++
+	
+
+Useful Links
+============
+
+- https://pypi.python.org/pypi/astmonkey/0.1.1
+- https://bitbucket.org/haypo/astoptimizer
+- https://code.google.com/p/shedskin/wiki/docs#Compiling_a_Stand-Alone_Program
