@@ -87,7 +87,8 @@ We get the following output :
 	:width: 90%
 
 	Graphical output of the AST for the example program.
-	
+
+
 
 Now, we have a AST, it's possible to make some optimisations (with the *AST Optimizer* project),
 That returns an equivalent AST that is optimized.
@@ -134,8 +135,33 @@ Installation process
 
 
 
+Shedskin module generation
+==========================
+
+This section enacts as a personnal note as much as a notice for further works on this project.
+
+In order to clarify any further creation of module you can found below the sequence explained:
+
+	- First: create a python file containing function interface only,
+	example of a function with one argument returning a list
+		def dummy_fun(toto):
+			return[1]
+	this is to help shedskin to perform a part of type inference (return type, here a list).
+	
+	- Next: create a simple python program with your function to make 
+	shedskin able to perform the full type analysis (arguments),
+	
+	- Then: compile your python file containing your little program
+	with the command shedskin -e my_program.py, this command will generate
+	a my_program.cpp, my_program.hpp, and a makefile.
+	
+	- Finally you can complete the .cpp and .hpp with your personnal code
+	implementing functions interfaces in C++
+	
+
 Useful Links
 ============
 
 - https://pypi.python.org/pypi/astmonkey/0.1.1
 - https://bitbucket.org/haypo/astoptimizer
+- https://code.google.com/p/shedskin/wiki/docs#Compiling_a_Stand-Alone_Program
