@@ -34,20 +34,18 @@ static volatile os_timer_t some_timer;
 
 void some_timerfunc(void *arg)
 {
-	//~ while(1) {
-		//Do blinky stuff
-		if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & BIT2)
-		{
-			//Set GPIO2 to LOW
-			gpio_output_set(0, BIT2, BIT2, 0);
-		}
-		else
-		{
-			//Set GPIO2 to HIGH
-			gpio_output_set(BIT2, 0, BIT2, 0);
-		}
-		//~ os_delay_us(100);
-	//~ }
+	//Do blinky stuff
+	if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & BIT2)
+	{
+		//Set GPIO2 to LOW
+		gpio_output_set(0, BIT2, BIT2, 0);
+	}
+	else
+	{
+		//Set GPIO2 to HIGH
+		gpio_output_set(BIT2, 0, BIT2, 0);
+	}
+	
 	os_timer_arm(&some_timer, blinkTimer(), 0);
 	
 }
