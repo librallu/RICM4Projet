@@ -50,8 +50,10 @@ all: checkdirs $(TARGET_OUT) $(FW_FILE_1) $(FW_FILE_2)
 
 .PHONY: all checkdirs flash clean
 
-%.o: %.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I $(SDK_INCLUDE) -I $(SDK_INC_JSON) -I . -L $(SDK_LIB)
+#~ %.o: %.c 
+#~ 	$(CC) -o $@ -c $< $(CFLAGS) -I $(SDK_INCLUDE) -I $(SDK_INC_JSON) -I . -L $(SDK_LIB)
+main.o: main.c
+	$(CC) -c $< $(CFLAGS) -I $(SDK_INCLUDE) -I $(SDK_INC_JSON) -I . -L $(SDK_LIB)
 
 
 # STEP 1 : For creating output directories if necessary
@@ -72,7 +74,7 @@ $(APP_AR): $(OBJ)
 	$(AR) cru $@ $^
 	
 $(TARGET_OUT): $(APP_AR)
-	$(LD) -L $(SDK_LIB) $(LD_SCRIPT2) $(LDFLAGS) -Wl,--start-group $(LIBFLAGS) $(APP_AR) -Wl,--end-group -o $@
+	$(LD) -L $(SDK_LIB) $(LD_SCRIPT2) $(LDFLAGS) -Wl,--start-group $(LIBFLAGS) $(APP_AR) module.cpp interface.h -Wl,--end-group -o $@
 
 
 # STEP 3 : FILE 1

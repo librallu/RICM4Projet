@@ -3,6 +3,7 @@
 #include "gpio.h"
 #include "os_type.h"
 #include "user_config.h"
+#include "interface.h"
 
 #define user_procTaskPrio        0
 #define user_procTaskQueueLen    1
@@ -12,19 +13,43 @@ static void user_procTask(os_event_t *events);
 static volatile os_timer_t some_timer;
 
 
+	//~ #define LOW_SPEED 1000
+	//~ #define HIGH_SPEED 100
+	//~ #define CYCLE_VALUE 8
+//~ int i = 0;
+//~ 
+//~ int blinkTimer(){
+	//~ if ( i < CYCLE_VALUE ){
+		//~ i++;
+		//~ return HIGH_SPEED;
+	//~ } else if ( i == CYCLE_VALUE ){
+		//~ i++;
+		//~ return LOW_SPEED;
+	//~ } else {
+		//~ i = 0;
+		//~ return LOW_SPEED;
+	//~ }
+//~ }
+
+
 void some_timerfunc(void *arg)
 {
-    //Do blinky stuff
-    if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & BIT2)
-    {
-        //Set GPIO2 to LOW
-        gpio_output_set(0, BIT2, BIT2, 0);
-    }
-    else
-    {
-        //Set GPIO2 to HIGH
-        gpio_output_set(BIT2, 0, BIT2, 0);
-    }
+	//~ while(1) {
+		//Do blinky stuff
+		if (GPIO_REG_READ(GPIO_OUT_ADDRESS) & BIT2)
+		{
+			//Set GPIO2 to LOW
+			gpio_output_set(0, BIT2, BIT2, 0);
+		}
+		else
+		{
+			//Set GPIO2 to HIGH
+			gpio_output_set(BIT2, 0, BIT2, 0);
+		}
+		//~ os_delay_us(100);
+	//~ }
+	os_timer_arm(&some_timer, blinkTimer(), 0);
+	
 }
 
 //Do nothing function
@@ -57,7 +82,7 @@ user_init()
     //&some_timer is the pointer
     //1000 is the fire time in ms
     //0 for once and 1 for repeating
-    os_timer_arm(&some_timer, 100, 1);
+    os_timer_arm(&some_timer, 1000, 0);
     
     //Start os task
     system_os_task(user_procTask, user_procTaskPrio,user_procTaskQueue, user_procTaskQueueLen);
