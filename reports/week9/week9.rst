@@ -27,10 +27,10 @@ at different speeds.
 
 First of all, we define the following interface (C header file).
 
-..code-block: C
+..code: C
 
-#ifndef __INTERFACE_H__
-#define __INTERFACE_H__
+	#ifndef __INTERFACE_H__
+	#define __INTERFACE_H__
 
 	#ifdef __cplusplus
 	extern "C" {
@@ -55,7 +55,7 @@ and do nothing if the file is compiled in C.
 
 We make the following C++ source :
 
-..code-block: C++
+..code: C++
 
 	#include "interface.h"
 
@@ -77,7 +77,7 @@ We make the following C++ source :
 
 We use the C++ function in the following C snippet :
 
-..code-block: C
+..code: C
 
 	#include "interface.h"
 
