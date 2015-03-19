@@ -100,3 +100,10 @@ We use the C++ function in the following C snippet :
 
 
 In this way, we select the time when the next call to some_timerfunc.
+
+
+
+Shedskin interaction
+====================
+
+In the shedskin output .h, we need to add 
