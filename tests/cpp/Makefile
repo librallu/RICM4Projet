@@ -96,7 +96,7 @@ flash: 0x00000.bin 0x40000.bin
 clean:
 	-@rm -r $(FW_BASE)
 	-@rm -r $(BUILD_BASE)
-	-@rm $(OBJ)
+	-@rm *.o *.gch
 	-@rm $(FW_FILE_1)
 	-@rm $(FW_FILE_2)
 

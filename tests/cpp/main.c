@@ -12,25 +12,9 @@ static void user_procTask(os_event_t *events);
 
 static volatile os_timer_t some_timer;
 
-
-	//~ #define LOW_SPEED 1000
-	//~ #define HIGH_SPEED 100
-	//~ #define CYCLE_VALUE 8
-//~ int i = 0;
-//~ 
-//~ int blinkTimer(){
-	//~ if ( i < CYCLE_VALUE ){
-		//~ i++;
-		//~ return HIGH_SPEED;
-	//~ } else if ( i == CYCLE_VALUE ){
-		//~ i++;
-		//~ return LOW_SPEED;
-	//~ } else {
-		//~ i = 0;
-		//~ return LOW_SPEED;
-	//~ }
-//~ }
-
+void WAIT(unsigned int ms){
+	os_delay_us(ms*1000);
+}
 
 void some_timerfunc(void *arg)
 {
