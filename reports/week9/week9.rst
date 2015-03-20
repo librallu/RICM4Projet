@@ -106,4 +106,16 @@ In this way, we select the time when the next call to some_timerfunc.
 Shedskin interaction
 ====================
 
-In the shedskin output .h, we need to add 
+TODO
+
+About object files 
+==================
+
+In this project, we need to understand how object files work.
+
+We can use some standard unix commands :
+
+- ld : GNU linker
+- nm : list symbols from object files
+- size : size of an object
+
