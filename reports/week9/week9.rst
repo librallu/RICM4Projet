@@ -119,3 +119,70 @@ We can use some standard unix commands :
 - nm : list symbols from object files
 - size : size of an object
 
+
+
+application
+-----------
+
+In this case, with the shedskin output, we have a lot of symbols in our
+object files, some of them are missing. We can see which of them with the
+command *nm main.o -u*.
+
+While compiling object file from shedskin output, we get this
+
+.. raw::
+
+	nm test.o -u
+				 U __cxa_allocate_exception
+				 U __cxa_atexit
+				 U __cxa_begin_catch
+				 U __cxa_call_unexpected
+				 U __cxa_end_catch
+				 U __cxa_free_exception
+				 U __cxa_throw
+				 U __dso_handle
+				 U GC_free
+				 U GC_malloc
+				 U GC_malloc_atomic
+				 U __gxx_personality_v0
+				 U memcpy
+				 U memmove
+				 U memset
+				 w __pthread_key_create
+				 U _Unwind_Resume
+				 U _ZN12__shedskin__10__add_strsEiPNS_3strES1_S1_S1_
+				 U _ZN12__shedskin__16cl_stopiterationE
+				 U _ZN12__shedskin__22__throw_stop_iterationEv
+				 U _ZN12__shedskin__26__throw_index_out_of_rangeEv
+				 U _ZN12__shedskin__3strC1EPKc
+				 U _ZN12__shedskin__4reprIiEEPNS_3strET_
+				 U _ZN12__shedskin__4TrueE
+				 U _ZN12__shedskin__5FalseE
+				 U _ZN12__shedskin__5pyobj11__nonzero__Ev
+				 U _ZN12__shedskin__5pyobj12__deepcopy__EPNS_4dictIPvPS0_EE
+				 U _ZN12__shedskin__5pyobj6__eq__EPS0_
+				 U _ZN12__shedskin__5pyobj6__ge__EPS0_
+				 U _ZN12__shedskin__5pyobj6__gt__EPS0_
+				 U _ZN12__shedskin__5pyobj6__le__EPS0_
+				 U _ZN12__shedskin__5pyobj6__lt__EPS0_
+				 U _ZN12__shedskin__5pyobj6__ne__EPS0_
+				 U _ZN12__shedskin__5pyobj7__cmp__EPS0_
+				 U _ZN12__shedskin__5pyobj7__int__Ev
+				 U _ZN12__shedskin__5pyobj7__len__Ev
+				 U _ZN12__shedskin__5pyobj7__str__Ev
+				 U _ZN12__shedskin__5pyobj8__copy__Ev
+				 U _ZN12__shedskin__5pyobj8__hash__Ev
+				 U _ZN12__shedskin__5pyobj9__index__Ev
+				 U _ZN12__shedskin__6___boxEi
+				 U _ZN12__shedskin__6__initEv
+				 U _ZN12__shedskin__6print2EPNS_4fileEiiz
+				 U _ZN12__shedskin__7cl_listE
+				 U _ZN12__shedskin__7__startEPFvvE
+				 U _ZNSt8ios_base4InitC1Ev
+				 U _ZNSt8ios_base4InitD1Ev
+				 U _ZSt20__throw_length_errorPKc
+				 U _ZTIN12__shedskin__5pyobjE
+				 U _ZTVN10__cxxabiv119__pointer_type_infoE
+				 U _ZTVN10__cxxabiv120__si_class_type_infoE
+	
+
