@@ -56,7 +56,7 @@ Combining the two commands
 
 ..code-block :: C
 
-	/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/bin/ld \
+	/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/bin/ld \
 	--sysroot=/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot -o build/app.out \
 	-u call_user_start \
 	-L/home/librallu/esp8266/esp-open-sdk/sdk/lib \
