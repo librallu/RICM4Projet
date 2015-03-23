@@ -18,10 +18,6 @@ we get the following link command for the sample project
 .. code-block :: C
 
 	/usr/bin/ld -plugin /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/liblto_plugin.so \
-	-plugin-opt=/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/lto-wrapper \
-	-plugin-opt=-fresolution=/tmp/ccxUiji8.res -plugin-opt=-pass-through=-lgcc_s \
-	-plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc \
-	-plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc \
 	--build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker \
 	/lib64/ld-linux-x86-64.so.2 -o test \
 	/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../lib/crt1.o \
