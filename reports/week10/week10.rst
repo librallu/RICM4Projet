@@ -31,7 +31,7 @@ we get the following link command for the sample project
 	-L/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../lib \
 	-L/lib/../lib -L/usr/lib/../lib \
 	-L/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../.. -v \
-	/tmp/cc8kYW57.o /tmp/cc9SO1yG.o /tmp/cc8zUtlp.o -lgc -lpcre \
+	builtin.o re.o test.o -lgc -lpcre \
 	-lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc \
 	/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/crtend.o \
 	/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../lib/crtn.o
