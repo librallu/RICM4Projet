@@ -25,7 +25,7 @@ After some work, we can see there are a lot o
 	/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/crtbegin.o \
 	-L/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2 \
 	-L/usr/lib/ -v \
-	builtin.o re.o test.o -lgc -lpcre \
+	builtin.o re.o test.o -lpcre \
 	-lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc \
 	/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/crtend.o \
 	/usr/lib/crtn.o
@@ -40,12 +40,30 @@ we get the following ld command :
 
 	/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/bin/ld \
 	--sysroot=/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot -o build/app.out \
-	-u call_user_start -L/home/librallu/esp8266/esp-open-sdk/sdk//lib \
+	-u call_user_start \
+	-L/home/librallu/esp8266/esp-open-sdk/sdk/lib \
 	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2 \
-	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/lib \
+	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/lib
 	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot/lib \
 	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot/usr/lib -v \
 	--no-check-sections -static --start-group -lc -lgcc -lhal -lpp -lphy -lnet80211 -llwip -lwpa \
 	-lmain build/app_app.a syscall.o main.o --end-group -T /home/librallu/esp8266/esp-open-sdk/sdk//ld/eagle.app.v6.ld
 
+
+
+Combining the two commands 
+==========================
+
+..code-block :: C
+
+	/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2/../../../../xtensa-lx106-elf/bin/ld \
+	--sysroot=/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot -o build/app.out \
+	-u call_user_start \
+	-L/home/librallu/esp8266/esp-open-sdk/sdk/lib \
+	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/lib/gcc/xtensa-lx106-elf/4.8.2 \
+	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/lib \
+	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot/lib \
+	-L/home/librallu/esp8266/esp-open-sdk/xtensa-lx106-elf/xtensa-lx106-elf/sysroot/usr/lib -v \
+	--no-check-sections -static --start-group -lc -lgcc -lhal -lpp -lphy -lnet80211 -llwip -lwpa -lstdc++ -lm \
+	-lmain build/app_app.a syscall.o main.o --end-group -T /home/librallu/esp8266/esp-open-sdk/sdk/ld/eagle.app.v6.ld
 
