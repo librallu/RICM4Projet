@@ -5,7 +5,7 @@ PREAMBLE: ROADMAP
 =================
 
 This project was a true challenge for us. To reach the point were we are at
-we have been throug several steps.
+we have been through many steps.
 The objective of our project was to be able to run python programs on the ESP8266.
 We had to understand how this chip works and how to communicate with it to be able to
 put code on it later. 
@@ -18,13 +18,42 @@ We had to addapt this toolchain to our chip and its associated sdk.
 INTRODUCTION: Presenting the card and toolchain
 ===============================================
 
-specs
+Core specs:
+The ESP is a very light piece of hardware with ultra low power consumption (about 200 mA at full charge 
+make it ideal for IoT purposes) ,providing WIFI capabilities and communicating by serial connection.
+Here are some of the core specs of this cheap chip
 
-differences with stm32
+	- 32-bit CPU running at 80MHz
+	- 64KBytes of instruction RAM
+	- 96KBytes of data RAM
+	- 64KBytes boot ROM
+
+detailed specs: https://github.com/esp8266/esp8266-wiki/wiki
+
+These core specs were the most important subject of worying during our project.
+In fact, it was the source of all our problems you will see why further in this report.
+we will point out this weakness by comparing the ESP module with last year card.
+
+differences with stm32:
+Last year, our predecessors worked on the same subject of providing a python
+compiled library for the STM32F4 Discovery card wich is a lot more powerful than
+the ESP8266. Here are the core specs of the 
+	
+	- 32-bit ARM Cortex-M4F core running at 200Mhz
+	- 1 MB Flash
+	- 192KB RAM
+	
+you can see it is much more beefy than our module. Particularly on the available ROM
+making it possible to use bigger codes 
 
 shedskin
+Shedskin is a python to C++ generator, allowing you to translate a subset
+of python directly to C++, and to provide python interfaces that you personnally
+code in C++ making you able to integrate them in the precedent subset.
 
 Xtensa
+Xtensa is a cross compiling toolchain making you able to process C/C++
+into bytecode for the ESP 8266. it is based upon GCC.
 
 
 FIRST STEPS: understanding the card
@@ -72,7 +101,9 @@ The other option, create a specific python compiler toward C/C++.
 
 USEFULL LINKS
 =============
-
+	
+	technical monitoring & watch: (chip provider's forum, partly in chinese) http://bbs.espressif.com/ 
+	
 	reStructuredText for the text layout (similar to Markdown) (http://docutils.sourceforge.net/rst.html)
 	Fritzing for the electronic schemes (http://fritzing.org/home/)
 	bounding ESP8266 and arduino : http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module
@@ -83,7 +114,7 @@ USEFULL LINKS
 	https://www.youtube.com/watch?v=uznq8W9sOKQ
 	http://www.instructables.com/id/Using-the-ESP8266-module/
 	http://hackaday.com/tag/esp8266/
-	https://github.com/esp8266
+	ESP8266 Community Forum : https://github.com/esp8266
 	http://harizanov.com/2014/11/esp8266-powered-web-server-led-control-dht22-temperaturehumidity-sensor-reading/
     http://gpio.kaltpost.de/?p=2082
     https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29
