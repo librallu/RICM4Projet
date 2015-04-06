@@ -27,11 +27,10 @@ WIFI capabilities and communicating by serial connection.
 Here are some of the core specs of this cheap chip
 
 	- 32-bit CPU running at 80MHz
-	- 64KBytes of instruction RAM
-	- 96KBytes of data RAM
-	- 64KBytes boot ROM
+	- 200kb of ROM
+	- 32kb sram
+	- 80kb dram
 
-detailed specs: https://github.com/esp8266/esp8266-wiki/wiki
 
 These core specs were the most important subject of worying during our project.
 In fact, it was the source of all our problems you will see why further in this report.
@@ -64,7 +63,7 @@ Xtensa is a cross compiling toolchain making you able to process C/C++
 into bytecode for the ESP 8266. it is based upon GCC.
 
 
-FIRST STEPS: understanding the card
+FIRST STEPS: understanding the card and its environnement
 ===================================
 
 To understand how the card is functionning, we tried at first to use its primary
@@ -89,15 +88,41 @@ Here are some examples of cammands and their effects on the module:
 	- "AT+CWLAP": asking for the detected wifi access points
 
 getting rid of third party dev cards : UART connection.
-The ESP8266 is capable of executing lots of serial connections, including
-UART connections, we found some little modules capable of transforming
-5V USB connections into 8-pin 3.3V serial connection sold by FTDI.
-We were provided one in week 6. 
+-------------------------------------------------------
+
+The ESP8266 is capable of using lots of serial connections, including
+UART connections.
+
+In order to connect directly to the ESP module, avoiding the third party
+card solution, we thought to use a Serial to UART converter to use an USB
+port to communicate with the module.
+The solution is rather easy as many USB to serial converter are existing.
+The problem is that they are probably providing too much voltage, as the
+ESP8266 runs on 3,3V and the USB port is on 5V.
+We where orientated toward making a reducer bridge for switching from 5V
+to 3,3V to adapt a USB to RS232 plug that we were provided after asking 
+for UART to USB converter. After making several measurements at the FABLab
+
+.. figure:: ../week3/resource/RS232measurements.svg
+	:alt: RS232 serial output voltage
+	
+	we reached two conclusion:
+		- first that every pin on the RS232 plug (except ground)
+		is giving either 5V in UP mode, or 0v in DOWN mode
+		- and secondly that it will be to much work converting **every** pin
+		with a dedicated bridge, without speaking of the "user friendly"
+		side of our project.
+	
+
+We asked for a FTDI converter module and were provided one in week 6. 
 
 Flashing the card:
 ------------------
 
-Thanks to this direct connection we were able to "discuss" directly with
+We have gone through a lot of issues due to lack of compatibility of the toolchain.
+you can see all the details in our activity report week 4 to 6.
+
+After resolving those problems and thanks to the direct connection we were able to "discuss" with
 the chip. Thanks to the flash tool provided by the vendor in the SDK,
 we were able to push code into the card from then on.
 
@@ -116,15 +141,72 @@ the work of ingeneering on this chip will be much easier from now on!
 Analysis of concurrent technologies
 ===================================
 
+
+We have several ways to make applications on the ESP8266 :
+
+
+ 1 **C with Xtensa Toolchain :** A simple way to run programs on ESP8266.
+   For it, we need to install the Xtensa Toolchain (we need to compile it on
+   Linux, it takes nearly 30 min). Then, we can compile executables for ESP8266.
+     
+   Pro :
+    - Simplest way known to run compiled programs on ESP8266
+    
+   Cons :
+    - We need to use C language, it's not very user friendly !
+
+
+
+ 2 **Micropython framework :** Allows to program ESP8266 with a recent
+   version of python (3.4).
+   
+   Pro :
+    - Simple to install on a third party dev card communicating with the ESP8266
+    and making it run programs
+    
+   Cons :
+    - Lack of performance and uses a lot of memory space
+    - It has not libraries to use wifi
+ 
+ 
+ 3 **Python to C++ via Shedskin :** Allows to program ESP8266 with python 2.7
+   by compiling it to C++.
+   
+   Pro :
+    - Coding with Python language (user friendly) and compiling C++ (performance)
+    
+   Cons :
+    - It is working with a python subset
+    - It has no libraries to use wifi
+    - We need to use a garbage collector
+ 
+
+ 
+ 4 **NodeMCU :** A way to program ESP8266 with *Lua* language.
+   
+   Pro :
+    - Coding with Lua language (user friendly) and has a great performance 
+    
+   Cons :
+    - 
+  
+  
+C code with Xtensa toolchain only:
+==================================
+
+we put asside this solution directly as it was contrary to the spirit of
+the project in its user friendly and futureproof parts.  
+    
 Interface with STM32 and micropython
-------------------------------------
+====================================
 
 After following the setup method descibed here: (https://github.com/micropython/micropython).
 The STM32 was funtionning with micropython and an interactive shell was availale
-on our computers to launch python commands on the ESP card. it's realy easy to
+on our computers to launch python commands on the ESP card.
 
 
-NodeMCU
+NodeMCU & Lua
+=============
 
 
 The garbage collection problem
@@ -208,7 +290,7 @@ USEFULL LINKS
 	
 	Fritzing for the electronic schemes (http://fritzing.org/home/)
 	
-	bounding ESP8266 and arduino : http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module
+	Bounding ESP8266 and arduino : http://www.seeedstudio.com/wiki/WiFi_Serial_Transceiver_Module
 	
 	ESP8266 documentation : https://nurdspace.nl/ESP8266
 	

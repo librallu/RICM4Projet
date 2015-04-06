@@ -21,7 +21,8 @@ We have several ways to make applications on the ESP8266 :
    version of python (3.4).
    
    Pro :
-    - Simple to install on ESP8266 and run programs
+    - Simple to install on a third party dev card communicating with the ESP8266
+    and making it run programs
     
    Cons :
     - Lack of performance and uses a lot of memory space
@@ -36,8 +37,8 @@ We have several ways to make applications on the ESP8266 :
     
    Cons :
     - It is working with a python subset
-    - It has not libraries to use wifi
-    - We need to use an another garbage collector
+    - It has no libraries to use wifi
+    - We need to use a garbage collector
  
 
  
