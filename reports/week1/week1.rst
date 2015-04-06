@@ -88,7 +88,7 @@ The code given to the arduino ONU is the following :
 		Serial.write(bridge.read()); 	// we read it and send it to the serial
 	}
 	
-We are getting the following output from the ONU :
+We are getting the following output from the UNO :
 	
 .. figure:: ressources/screen1.png
 	:alt: arduino bridge test screenshot
@@ -109,7 +109,7 @@ We give some examples of signals understandable by the card:
 	- "OFF": shutdown the card
 	- "SLEEP": puting the card in sleep mode
 	- "WAKEUP": exitig sleep mode
-	- "AT+CWLAP": asking for the detected wifi access points
+	- "AT+CWLAP": asking for the detected wif i access points
 
 
 Single arduino version
