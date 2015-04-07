@@ -27,9 +27,8 @@ WIFI capabilities and communicating by serial connection.
 Here are some of the core specs of this cheap chip
 
 	- 32-bit CPU running at 80MHz
-	- 200kb of ROM
-	- 32kb sram
-	- 80kb dram
+	- 64ko of ROM for flashing programs
+	- 64kb of RAM
 
 
 These core specs were the most important subject of worying during our project.
@@ -102,16 +101,8 @@ ESP8266 runs on 3,3V and the USB port is on 5V.
 We where orientated toward making a reducer bridge for switching from 5V
 to 3,3V to adapt a USB to RS232 plug that we were provided after asking 
 for UART to USB converter. After making several measurements at the FABLab
-
-.. figure:: ../week3/resource/RS232measurements.svg
-	:alt: RS232 serial output voltage
-	
-	we reached two conclusion:
-		- first that every pin on the RS232 plug (except ground)
-		is giving either 5V in UP mode, or 0v in DOWN mode
-		- and secondly that it will be to much work converting **every** pin
-		with a dedicated bridge, without speaking of the "user friendly"
-		side of our project.
+we pointed out that the RS232 plug was providing 5V, and it will be to
+much complicated to build a reducer beca
 	
 
 We asked for a FTDI converter module and were provided one in week 6. 
@@ -208,6 +199,29 @@ on our computers to launch python commands on the ESP card.
 NodeMCU & Lua
 =============
 
+The Lua language (in this case the eLua, embedded specialised version of Lua)
+and nodeMCU platform is pretty advanced and light in term of code weight.
+We easily put some code on the card thanks to the tutorial of the project
+on github.
+
+
+Shedskin
+========
+
+Shedskin is the cornerstone of our project, indeed it is the part that
+makes us able to translate python to C++ making it compilable by the Xtensa
+toolchain, we faced two problems using this technology in our use case.
+Firstly the minimal library for using Shedskin is rather big compared to
+the memory available in the ESP (it fullfils the memory just by being included),
+and secondly we need to use a garbage collector to obtain the full fonctionnality
+of python code (even if we can substract the garbage collector if our code
+stays sufficiently compact in stack and heap).
+But the more we tried to produce such short code, the more it conforted us
+in the idea that this "python compiled" approach is not the good one to pick.
+Indeed by the end of the project we faced the fact that any simple C++ library
+is big compared to the chip's memory (for example even the list library is to big).
+
+
 
 The garbage collection problem
 ==============================
@@ -261,14 +275,9 @@ maybe by dropping the idea of using python and C++ and switch to another
 language who will be able to generate code directly runable without garbage
 collecting (Lua via nodemcu).
 
-After discussing the subject with the project responsible we will keep
+After discussing the subject with the project responsible we kept on
 trying to implement python on the wifi module in spite of the limitations
 we brought up with our analysis, for python is the most widespread.
-
-
-Shedskin
-========
-
 
 
 
