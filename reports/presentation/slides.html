@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">	
+<head>
+<meta charset="utf-8">
+<title>Python on ESP8266 - Midway Presentation</title>
+<link rel="stylesheet" href="file:///home/librallu/RICM/S8/anglais/pres_MagicLeap/reveal.js/css/reveal.css">
+<link rel="stylesheet" href="file:///home/librallu/RICM/S8/anglais/pres_MagicLeap/reveal.js/css/theme/sky.css" id="theme">	
+<!--Add support for earlier versions of Internet Explorer -->
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+</head>
+ 
+<body>
+<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+<div class="reveal">
+<!-- Wrap all slides in a single "slides" class -->
+<div class="slides">
+	
+ 
+	<!-- ALL SLIDES GO HERE -->
+	<!-- Each section element contains an individual slide -->
+	<section>
+	<h2>Python on ESP8266</h2>
+	<h3>Final Presentation</h3>
+	<img height="300px;" src="esp.jpg" />
+	<h4>Luc Libralesso - Olivier Soldano</h4>
+	</section>
+	
+	<section>
+		<h3>About the ESP8266</h3>
+		<img height="300px;" src="esp.jpg" />
+		<ul style="margin-top: 100px; float:right">
+			<li>A small card</li>
+			<li>Wifi features</li>
+			<li>Cheap (less than 5 euros)</li>
+		</ul>
+	</section>
+	
+	<section>
+		<h3>Use cases</h3>
+		<ul>
+			<li>Internet of Things</li>
+		</ul>
+	</section>
+
+	<section>
+		<section>
+			the ESP8266 ecosystem
+		</section>
+		
+		<section>
+			NodeMCU
+		</section>
+		
+		<section>
+			MicroPython
+		</section>
+		
+		<section>
+			C with Xtensa
+		</section>
+		
+		<section>
+			Conclusion
+		</section>
+		
+	</section>
+	
+	<section>
+		<h3>Purpose of the project</h3>
+		Allowing user to program the ESP8266 in Python, and compile to C++.
+		It allows better performance.
+		
+	</section>
+	
+	<section>
+		<section>
+		<h3>wiring schematics</h3>
+		Below the flash mode and the run mode of the ESP8266
+		</section>
+		
+		<section>
+			<h3>Flash Mode</h3>
+			<img src="flash.png" alt="flash mode" />
+		</section>
+		
+		<section>
+			<h3>Run Mode</h3>
+			<img src="run.png" alt="run mode" />
+		</section>
+		
+		<section>
+			<h3>Tests</h3>
+			<img height=500px; src="wires.jpg" alt="first test" />
+		</section>
+	</section>
+	
+	<section>
+		The SDK
+	</section>
+	
+	<section>
+		shedskin module : ESP8266
+	</section>
+	
+	<section>
+		
+		<section>
+			<h3>Python ASTs</h3>
+		</section>
+		
+		<section>
+			<pre><code data-trim>
+		l = k = [1,2,3]
+		i = a = 0
+		while i < 3+1:
+			a += 1
+			</code></pre>
+		</section>
+		
+		<section>
+			<h3>Graphical output of the AST</h3>
+			<img src="graph.png" width="100%" alt="AST of the python code above"/>
+		</section>
+		
+		<section>
+			<h3>AST Optimizer</h3>
+			<a href="https://bitbucket.org/haypo/astoptimizer">AstOptimizer bitbucket</a>
+		</section>
+		
+		<section>
+			<h3>C output </h3>
+			(python testNode.py | indent)
+				<pre><code class="html">
+#include &lt;vector&gt;
+#include "syscall.h"
+#include "interface.h"
+
+int main()
+{
+    std::vector < int >l;
+    l.push_back(1);
+    l.push_back(2);
+    l.push_back(3);
+
+    std::vector < int >k;
+    k.push_back(1);
+    k.push_back(2);
+    k.push_back(3);
+
+    int i = 0;
+    int a = 0;
+    while (i < 4) {
+        a += 1;
+    }
+    return 0;
+}
+
+			</code></pre>
+		</section>
+	
+	</section>
+	
+	<section>
+		So Far
+	</section>
+	
+	<section>
+		<section>
+			Demo:
+			<img height=500px; src="blink.png" alt="blink architecture" />
+		</section>
+		
+		<section>
+		python code : 
+		<pre><code class="html">
+i = 0
+while True:
+	esp.gpio2_toggle()
+	if i%16 < 10+2:
+		esp.wait(100)
+	else:
+		esp.wait(500)
+	i += 1
+	</code></pre>
+		</section>
+		
+		<section>
+		c++ code
+		<pre><code class="html">
+#include &lt;vector&gt;
+#include "syscall.h"
+#include "interface.h"
+
+int main()
+{
+    int i = 0;
+    while (1) {
+        GPIO2_TOGGLE();
+        if (i % 16 < 12) {
+            WAIT(100);
+        } else {
+            WAIT(500);
+        }
+        i += 1;
+    }
+    return 0;
+}
+
+		</code></pre>
+		</section>
+	</section>
+	
+	<section>
+		Further Work
+	</section>
+
+ 
+</div>
+</div>
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+ 
+<script>
+// Required, even if empty.
+Reveal.initialize({});
+</script>
+
+
+
+</body>
+</html>
