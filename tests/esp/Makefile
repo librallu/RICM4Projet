@@ -14,6 +14,7 @@ FW_BASE		=	firmware
 
 SRC			=	user_init.c
 SRC_CPP		=	main.cpp
+SRC_PY		=	main.py
 
 
 ###################### DO NOT TOUCH THIS PART ##########################
@@ -51,6 +52,9 @@ all: checkdirs $(TARGET_OUT) $(FW_FILE_1) $(FW_FILE_2)
 
 .PHONY: all checkdirs flash clean
 
+$(SRC_CPP): $(SRC_PY)
+	python genC++.py $^ | indent -kr -nut -ts4 > $@
+
 syscall.o: syscall.c syscall.h
 	$(CC) -c $< $(CFLAGS) -I $(SDK_INCLUDE) -I $(SDK_INC_JSON) -I . -L $(SDK_LIB)
 
@@ -78,7 +82,7 @@ $(APP_AR): $(OBJ)
 	$(AR) cru $@ $^
 	
 $(TARGET_OUT): $(APP_AR)
-	$(LD) -L $(SDK_LIB) $(LD_SCRIPT2) $(LDFLAGS) -Wl,--start-group $(LIBFLAGS) $(APP_AR) syscall.o main.cpp interface.h -Wl,--end-group -o $@
+	$(LD) -Wl,-v -L $(SDK_LIB) $(LD_SCRIPT2) $(LDFLAGS) -Wl,--start-group $(LIBFLAGS) $(APP_AR) syscall.o main.cpp interface.h -Wl,--end-group -o $@
 
 
 # STEP 3 : FILE 1
@@ -98,6 +102,7 @@ flash: 0x00000.bin 0x40000.bin
 
 
 clean:
+	-@rm $(SRC_CPP)
 	-@rm -r $(FW_BASE)
 	-@rm -r $(BUILD_BASE)
 	-@rm *.o *.gch
