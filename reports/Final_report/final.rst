@@ -360,7 +360,21 @@ TYPICAL PROJECT ARCHITECTURE
 	:width: 500 px
 	
 	File architecture of our project
+
+
+WIRING MODES
+------------
+
+.. figure:: run.png
+	:width: 500 px
 	
+	Run mode for the ESP8266
+
+
+.. figure:: flash.png
+	:width: 500 px
+	
+	Flash mode for the ESP8266
 
 USEFUL LINKS
 ------------
