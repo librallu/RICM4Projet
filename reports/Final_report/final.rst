@@ -183,7 +183,6 @@ We have several ways to make applications on the ESP8266 :
     - It has no libraries to use wifi
     - We need to use a garbage collector
  
-
  
  4 **NodeMCU :** A way to program ESP8266 with *Lua* language.
    
@@ -351,8 +350,18 @@ We use the *indent* command to indent the output code. We used the
 following options : *indent -kr -nut -ts4*
 
 
+APPENDIX
+========
+
+TYPICAL PROJECT ARCHITECTURE
+----------------------------
+
+..figure:: file_architecture.png
+	:width: 500px
+	File architecture of our project
+
 USEFUL LINKS
-============
+------------
 	
  -	technical monitoring & watch: (chip provider's forum, partly in chinese) http://bbs.espressif.com/ 
  -	reStructuredText for the text layout (similar to Markdown) (http://docutils.sourceforge.net/rst.html)
