@@ -357,7 +357,8 @@ TYPICAL PROJECT ARCHITECTURE
 ----------------------------
 
 ..figure:: file_architecture.png
-	:width: 500px
+	:width: 500 px
+	
 	File architecture of our project
 
 USEFUL LINKS
