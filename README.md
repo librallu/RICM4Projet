@@ -17,3 +17,7 @@ assembly code for the devices STM32F4-Discovery and ESP8266.
  - week 6 : https://github.com/librallu/RICM4Projet/blob/master/reports/week6/week6.rst
  - week 7 : https://github.com/librallu/RICM4Projet/blob/master/reports/week7/week7.rst
  - week 8 : https://github.com/librallu/RICM4Projet/blob/master/reports/week8/week8.rst
+ - week 9 : https://github.com/librallu/RICM4Projet/blob/master/reports/week9/week9.rst
+ - week 10 : https://github.com/librallu/RICM4Projet/blob/master/reports/week10/week10.rst
+ - week 11 : https://github.com/librallu/RICM4Projet/blob/master/reports/week11/week11.rst
+ - final report : https://github.com/librallu/RICM4Projet/blob/master/reports/Final_report/final.rst
