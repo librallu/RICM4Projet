@@ -350,6 +350,25 @@ We use the *indent* command to indent the output code. We used the
 following options : *indent -kr -nut -ts4*
 
 
+The following Nodes are implemented :
+
+- ast.Assign
+- ast.If
+- ast.For
+- ast.Name
+- ast.List
+- ast.Tuple
+- ast.Subscript
+- ast.Index
+- ast.Expr
+- ast.Num
+- ast.While
+- ast.Compare
+- ast.BinOp
+- ast.AugAssign
+- ast.Attribute
+- ast.Call for modules
+
 APPENDIX
 ========
 
