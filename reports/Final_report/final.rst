@@ -35,9 +35,9 @@ The ESP is a very light piece of hardware with ultra low power consumption
 WIFI capabilities and communicating by serial connection.
 Here are some of the core specs of this cheap chip
 
-	- 32-bit CPU running at 80MHz
-	- 64ko of ROM for flashing programs
-	- 64kb of RAM
+- 32-bit CPU running at 80MHz
+- 64ko of ROM for flashing programs
+- 64kb of RAM
 
 
 These core specs were the most important subject of worying during our project.
@@ -51,9 +51,9 @@ Last year, our predecessors worked on the same subject of providing a python
 compiled library for the STM32F4 Discovery card wich is a lot more powerful than
 the ESP8266. Here are the core specs of the 
 	
-	- 32-bit ARM Cortex-M4F core running at 200Mhz
-	- 1 MB Flash
-	- 192KB RAM
+- 32-bit ARM Cortex-M4F core running at 200Mhz
+- 1 MB Flash
+- 192KB RAM
 	
 you can see it is much more beefy than our module. Particularly on the available ROM
 making it possible to use bigger codes 
@@ -90,10 +90,10 @@ The ESP module is commanded by sending ascii chains through the serial port.
 The input voltage of the serial port is 3.3V, easily provided by the arduino pins.
 Here are some examples of cammands and their effects on the module:
 
-	- "OFF": shutdown the card
-	- "SLEEP": puting the card in sleep mode
-	- "WAKEUP": exitig sleep mode
-	- "AT+CWLAP": asking for the detected wifi access points
+- "OFF": shutdown the card
+- "SLEEP": puting the card in sleep mode
+- "WAKEUP": exitig sleep mode
+- "AT+CWLAP": asking for the detected wifi access points
 
 getting rid of third party dev cards : UART connection.
 -------------------------------------------------------
@@ -145,52 +145,59 @@ Analysis of concurrent technologies
 We have several ways to make applications on the ESP8266 :
 
 
- 1 **C with Xtensa Toolchain :** A simple way to run programs on ESP8266.
-   For it, we need to install the Xtensa Toolchain (we need to compile it on
-   Linux, it takes nearly 30 min). Then, we can compile executables for ESP8266.
-     
-   Pro :
-    - Simplest way known to run compiled programs on ESP8266
-    
-   Cons :
-    - We need to use C language, it's not very user friendly !
+- 1 **C with Xtensa Toolchain :** A simple way to run programs on ESP8266.
+  For it, we need to install the Xtensa Toolchain (we need to compile it on
+  Linux, it takes nearly 30 min). Then, we can compile executables for ESP8266.
+ 
+  Pro :
+  
+   - Simplest way known to run compiled programs on ESP8266
+
+  Cons :
+
+   - We need to use C language, it's not very user friendly !
 
 
 
- 2 **Micropython framework :** Allows to program ESP8266 with a recent
-   version of python (3.4).
+- 2 **Micropython framework :** Allows to program ESP8266 with a recent
+  version of python (3.4).
+
+  Pro :
    
-   Pro :
-    - Simple to install on a third party dev card communicating with the ESP8266
-      and making it run programs
-    
-   Cons :
-    - Lack of performance and uses a lot of memory space
-    - It has not libraries to use wifi
-    
-   We can note that it's still in developpment, so we can hope that project
-   will implement python on the ESP8266
- 
- 
- 3 **Python to C++ via Shedskin :** Allows to program ESP8266 with python 2.7
-   by compiling it to C++.
+   - Simple to install on a third party dev card communicating with the ESP8266
+     and making it run programs
+
+  Cons :
    
-   Pro :
-    - Coding with Python language (user friendly) and compiling C++ (performance)
-    
-   Cons :
-    - It is working with a python subset
-    - It has no libraries to use wifi
-    - We need to use a garbage collector
- 
- 
- 4 **NodeMCU :** A way to program ESP8266 with *Lua* language.
+   - Lack of performance and uses a lot of memory space
+   - It has not libraries to use wifi
+
+  We can note that it's still in developpment, so we can hope that project
+  will implement python on the ESP8266
+
+
+- 3 **Python to C++ via Shedskin :** Allows to program ESP8266 with python 2.7
+  by compiling it to C++.
+
+  Pro :
    
-   Pro :
-    - Coding with Lua language (user friendly) and has a great performance 
-    
-   Cons :
-    - it's not python
+   - Coding with Python language (user friendly) and compiling C++ (performance)
+
+  Cons :
+   
+   - It is working with a python subset
+   - It has no libraries to use wifi
+   - We need to use a garbage collector
+
+- 4 **NodeMCU :** A way to program ESP8266 with *Lua* language.
+
+  Pro :
+   
+   - Coding with Lua language (user friendly) and has a great performance 
+
+  Cons :
+
+   - it's not python
   
   
 C code with Xtensa toolchain only:
