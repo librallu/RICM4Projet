@@ -98,11 +98,121 @@
 	</section>
 	
 	<section>
-		The SDK
+		<p>The SDK</p>
+		<ul>
+			<li>A work in progress: <a href="http://bbs.espressif.com">espressif forum</a></li>
+			<li>Only works in C, we need to port it to C++</li>
+		</ul>
 	</section>
 	
 	<section>
+		<section>
 		shedskin module : ESP8266
+		</section>
+		<section>
+			<p>esp.py</p>
+			<pre><code data-trim>
+def gpio2_up():
+	pass
+	
+def gpio2_down():
+	pass
+	
+def gpio2_toggle():
+	pass
+
+def gpio2_value():
+	return True
+	
+def wait(i):
+	pass
+
+def test_serial():
+	pass
+	</code></pre>
+		</section>
+		
+		<section>
+			<p>esp.hpp</p>
+			<pre><code data-trim>
+#ifndef __ESP_HPP
+#define __ESP_HPP
+
+//~ #include "builtin.hpp"
+
+//~ using namespace __main__;
+
+namespace __esp__ {
+	
+	void __init();
+
+	void gpio2_up();
+	
+	void gpio2_down();
+	
+	void gpio2_toggle();
+	
+	bool gpio2_value();
+	
+	void wait(int i);
+	
+	void test_serial();
+
+} // module namespace
+#endif
+			</code></pre>
+		</section>
+		
+		<section>
+			<p>esp.cpp</p>
+			<pre><code data-trim>
+#include "esp.hpp"
+
+#include "syscall.h"
+
+namespace __esp__ {
+	
+	void __init(){
+		
+	}
+
+	void gpio2_up(){
+		GPIO2_SET(HIGH);
+	}
+	
+	void gpio2_down(){
+		GPIO2_SET(DOWN);
+	}
+	
+	void gpio2_toggle(){
+		GPIO2_TOGGLE();
+	}
+	
+	bool gpio2_value(){
+		return GPIO2_VAL()==HIGH ? true : false;
+	}
+	
+	void wait(int i){
+		WAIT(i);
+	}
+	
+	void test_serial(){
+		TEST_SERIAL();
+	}
+	
+} // module namespace
+		
+			</code></pre>
+		</section>
+		
+		<section>
+		<p>But shedskin libraries are too big for the ESP8266 memory</p>
+		<p>Solutions:</p>
+		<ul>
+			<li>Make a subset of shedskin libraries to gain memory space</li>
+			<li>use an other python to C++ compiler</li>
+		</ul>
+		</section>
 	</section>
 	
 	<section>
@@ -164,7 +274,14 @@ int main()
 	</section>
 	
 	<section>
-		So Far
+		<p>So Far</p>
+		<ul>
+			<li>Understanding of ESP ecosystem</li>
+			<li>C++ library to use the esp8266</li>
+			<li>A tiny python to C++ compiler</li>
+			<li><a href="http://librallu.github.io/RICM4Projet/">project website</a></li>
+			<li><a href="http://air.imag.fr/index.php/Project-2014-2015-ESP8266">project wiki</a></li>
+		</ul>
 	</section>
 	
 	<section>
@@ -214,7 +331,12 @@ int main()
 	</section>
 	
 	<section>
-		Further Work
+		<p>Further Work</p>
+		<ul>
+			<li>A better python to C++ translator</li>
+			<li>Implement more features in the C++ library</li>
+			<li>Make a shedskin subset for running on the esp8266</li>
+		</ul>
 	</section>
 
  
